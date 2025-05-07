@@ -10,3 +10,30 @@
   <span class="close">&times;</span>
   <img class="lightbox-content" id="lightbox-img">
 </div>
+// Select all thumbnail images
+const thumbnails = document.querySelectorAll('.thumbnail');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close');
+
+// Loop through each thumbnail
+thumbnails.forEach(thumbnail => {
+  thumbnail.addEventListener('click', function() {
+    // Get the full-size image URL from the data-src attribute
+    const fullImageUrl = this.getAttribute('data-src');
+    lightboxImg.src = fullImageUrl;
+    lightbox.style.display = 'block'; // Show the lightbox
+  });
+});
+
+// Close the lightbox when the close button is clicked
+closeBtn.addEventListener('click', function() {
+  lightbox.style.display = 'none'; // Hide the lightbox
+});
+
+// Close the lightbox when clicking outside the image
+lightbox.addEventListener('click', function(event) {
+  if (event.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
+});
